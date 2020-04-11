@@ -58,9 +58,9 @@ data (SymEntryCompatible a) => Operand a b =
   deriving (Eq)
 
 instance (SymEntryCompatible a, Show a, Show b) => Show (Operand a b) where
-  show (Id x) = show x
+  show (Id x)       = show x
   show (Constant c) = fst c
-  show (Label l) = l
+  show (Label l)    = l
 
 data Operation =
     Assign        |
@@ -149,6 +149,10 @@ data Operation =
     Exit        |
     -- | abort (failure)
     Abort       |
+
+    -- Memory load/store
+    Load |
+    Store |
 
     Cast String String
     deriving (Eq, Show)

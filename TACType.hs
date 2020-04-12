@@ -12,6 +12,8 @@ data (SymEntryCompatible a) => ThreeAddressCode a b = ThreeAddressCode
   deriving (Eq)
 
 instance (SymEntryCompatible a, Show a, Show b) => Show (ThreeAddressCode a b) where
+  show (ThreeAddressCode Store (Just (Id v)) Nothing Nothing)    = "\t" ++ "store " ++ show v
+  show (ThreeAddressCode Load (Just (Id v)) Nothing Nothing)     = "\t" ++ "load " ++ show v
   show (ThreeAddressCode Assign (Just x) (Just y) _)              = "\t" ++ show x ++ " := " ++ show y
   show (ThreeAddressCode Add (Just x) (Just y) (Just z))          = "\t" ++ show x ++ " := " ++ show y ++ " + " ++ show z
   show (ThreeAddressCode Minus (Just x) (Just y) Nothing)         = "\t" ++ show x ++ " := -" ++ show y
